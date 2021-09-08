@@ -1,0 +1,24 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
+/* this will be applied on any screen smaller than 575px */
+@media screen and (max-width: 575px) {
+    .btn-grid {
+      grid-template-columns: repeat(1, auto);
+      gap: 0;
+      margin: 0;
+    }
+  }
