@@ -11,46 +11,67 @@
 
 <body>
     <header>
-        
-        <div id="timer" >
+
+        <div id="timer">
             Time: 75
         </div>
 
     </header>
 
 
-    <section id = "start-container">
+    <section id="start-container">
         <h1>The Code Questionnaire</h1>
         <p>
             You have 75 seconds to answer random web development questions. Time will be subtracted if answered
             incorrectly. Click to begin. Good Luck!
         </p>
-       <div>
-        <button id = "begin"> Begin</button>  
-        </div>  
+        <div>
+            <button id="begin"> Begin</button>
+        </div>
     </section>
 
-<Section id ="quest-container">
-    <h1 id ="quest">Questions</h1>
-    <div id = "answer-btns">
-        <button>Answer uno</button>
-        <button>Answer dos</button>
-        <button>Answer tres</button>
-        <button>Answer quatro</button>
-    </div>
+    <Section id="quest-container">
+        <h1 id="quest">Questions</h1>
+        <div id="answer-btns">
+            <button>Answer uno</button>
+            <button>Answer dos</button>
+            <button>Answer tres</button>
+            <button>Answer quatro</button>
+        </div>
 
-    <h2 id ="check-answer" class="correct-wrong hide"></h2>
-    
- <div>
- <button id="nxt-btn">Next</button>
-</div>
+        <h2 id="check-answer" class="correct-wrong hide"></h2>
 
-</Section>
+        <div>
+            <button id="nxt-btn" class="next-btn hide">Next</button>
+        </div>
+    </Section>
+
+    <section id="score-container" class="hide">
+        <form id="submit-form">
+            <h3 id="your-score"></h3>
+            <label id="initials-label">Enter your initials to save the score</label>
+            <input type="text" id="initials-field" maxlength="3" placeholder="Enter your initials" />
+            <button id="submit">Submit</button>
+        </form>
+    </section>
+
+    <section id="highscores" class="highscores-container hide">
+        <div id="high-scores">
+            <h1 class="centered">Leaderboard</h1>
+            <div id="highscore" class="highscore highscore-list">
+            </div>
 
 
-    <!--JavaScript linked-->
-    <script src="assets/js.js"></script>
-    <script src="assets/questions.js"></script>
+            <div>
+                <button id="restart">Restart</button>
+                <button id="Clear">Clear Scores</button>
+
+
+            </div>
+
+            <!--JavaScript linked-->
+            <script src="assets/js.js"></script>
+            <script src="assets/questions.js"></script>
 </body>
 
 </html>
