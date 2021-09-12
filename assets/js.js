@@ -1,3 +1,6 @@
+//all my variables listed
+//get elements
+
 var timeLeft = 75
 var timerID;
 var timerElement = document.getElementById("timer")
@@ -15,3 +18,22 @@ var initials = document.getElementById("player-name");
 var restartButton = document.getElementById("restart");
 var scoreField = document.getElementById("player-score");
 var scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+//var shuffledQuestions, currentQuestionIndex;
+
+//start button
+startButton.addEventListener("click", startGame);
+nextButton.addEventListener("click", () => {
+    currentQuestionIndex++
+    //setNextQuestion()
+});
+
+//time function
+function timeCountdown() {
+    timeLeft--;
+    timerElement.textContent = "Time: " + timeLeft;
+    if (timeLeft <= 0) {
+        saveScore();
+    }
+}
+
