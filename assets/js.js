@@ -58,7 +58,7 @@ function NextQuestion() {
 
 // show questions
 function showQuestion(question) {
-    question.innerText = question.question
+    questionElement.innerText = question.question
     question.answers.forEach(answer => {
         var button = document.createElement("button")
         button.innerText = answer.text
@@ -130,3 +130,93 @@ function clearStatusClass(element) {
     element.classList.remove("correct");
     element.classList.remove("wrong");
 };
+
+// Save scores
+function saveScore() {
+    clearInterval(timerID);
+    timerElement.textContent = "Time: " + timeLeft;
+    setTimeout(function () {
+        questionElement.classList.add("hide");
+        document.getElementById("score-container").classList.remove("hide");
+        document.getElementById("your-score").textContent = "Your final score is " + timeLeft;
+
+    }, 2000)
+};
+
+var loadScores = function () {
+    // Get score from local storage
+
+    if (!savedScores) {
+        return false;
+    }
+
+    // Convert scores from stringfield format into array
+    savedScores = JSON.parse(savedScores);
+    var initials = document.querySelector("#initials-field").value;
+    var newScore = {
+        score: timeLeft,
+        initials: initials
+    }
+    savedScores.push(newScore);
+    console.log(savedScores)
+
+    savedScores.forEach(score => {
+        initialsField.innerText = score.initials
+        scoreField.innerText = score.score
+    })
+};
+
+//show high scores
+
+function showHighScores(initials) {
+    document.getElementById("highscores").classList.remove("hide")
+    document.getElementById("score-container").classList.add("hide");
+    startContainerElement.classList.add("hide");
+    containerQuestionElement.classList.add("hide");
+    if (typeof initials == "string") {
+        var score = {
+            initials, timeLeft
+        }
+        scores.push(score)
+    }
+
+
+    var highScoreElement = document.getElementById("highscore");
+    highScoreElement.innerHTML = "";
+    //console.log(scores)
+    for (i = 0; i < scores.length; i++) {
+        var div1 = document.createElement("div");
+        div1.setAttribute("class", "name-div");
+        div1.innerText = scores[i].initials;
+        var div2 = document.createElement("div");
+        div2.setAttribute("class", "score-div");
+        div2.innerText = scores[i].timeLeft;
+
+        highScoreElement.appendChild(div1);
+        highScoreElement.appendChild(div2);
+    }
+
+    localStorage.setItem("scores", JSON.stringify(scores));
+
+};
+
+// View high scores link
+viewHighScores.addEventListener("click", showHighScores);
+
+
+submitButton.addEventListener("click", function (event) {
+    event.preventDefault()
+    var initials = document.querySelector("#initials-field").value;
+    showHighScores(initials);
+});
+
+// Restart or reload the page
+restartButton.addEventListener("click", function () {
+    window.location.reload();
+});
+
+ //Clear localStorage items 
+clearScoreButton.addEventListener("click", function () {
+    localStorage.clear();
+    document.getElementById("highscore").innerHTML = "";
+});
