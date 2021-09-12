@@ -19,13 +19,13 @@ var restartButton = document.getElementById("restart");
 var scoreField = document.getElementById("player-score");
 var scores = JSON.parse(localStorage.getItem("scores")) || [];
 
-//var shuffledQuestions, currentQuestionIndex;
+var shuffledQuestions, currentQuestionIndex;
 
 //start button
-startButton.addEventListener("click", startGame);
+beginButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++
-    //setNextQuestion()
+    NextQuestion()
 });
 
 //time function
@@ -37,3 +37,15 @@ function timeCountdown() {
     }
 }
 
+//Start Quiz
+function startGame() {
+    timerID = setInterval(timeCountdown, 1000);
+    startContainerElement.classList.add("hide");
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionElement.classList.remove("hide");
+
+    // Timer will start as soon as start button is clicked
+    timeCountdown();
+    NextQuestion();
+};
