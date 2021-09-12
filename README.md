@@ -5,8 +5,7 @@
 Timed multiple choice code quiz.
 
 # URL
-
-
+https://george1029.github.io/Code-Quiz/
 # User Story
 
 AS A coding boot camp student
